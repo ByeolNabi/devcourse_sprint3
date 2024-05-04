@@ -6,5 +6,3 @@ let student = {
     console.log("a");
   },
 };
-
-student.name = "lee";
