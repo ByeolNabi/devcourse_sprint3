@@ -12,7 +12,7 @@ class MyStudent {
         this.stdId = 990709;
         this.stdName = "park";
         this.age = 30;
-        this.gender = GenderType.Male;
+        this.gender = "male";
         this.course = "node.js";
         this.completed = true;
     }

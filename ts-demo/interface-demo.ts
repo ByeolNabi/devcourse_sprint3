@@ -9,7 +9,8 @@ interface Student {
   stdId: number;
   stdName: string;
   age: number;
-  gender: GenderType;
+  //gender: GenderType;
+  gender: "male" | "female";
   course: string;
   completed: boolean;
   //setName(name: string): void;
@@ -22,7 +23,7 @@ class MyStudent implements Student {
   stdId = 990709;
   stdName = "park";
   age = 30;
-  gender = GenderType.Male;
+  gender: "male" | "female" = "male";
   course = "node.js";
   completed = true;
 
