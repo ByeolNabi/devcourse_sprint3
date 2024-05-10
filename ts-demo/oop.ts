@@ -2,15 +2,12 @@
 // 멤버함수 == 메소드
 
 class Employee {
-  private _empName: string;
-  private _age: number;
-  private _empJob: string;
-
-  constructor(empName: string, age: number, empJob: string) {
-    this._empName = empName;
-    this._age = age;
-    this._empJob = empJob;
-  }
+  constructor(
+    // 암묵적으로 맴버변수로 사용된다고 한다.
+    private _empName: string,
+    private _age: number,
+    private _empJob: string
+  ) {}
 
   // private에 접근하기 위한 인터페이스(함수)를 만들어 주는 것이 인지상정
   // get set

@@ -2,7 +2,12 @@
 // 멤버변수 == 속성 == 프로퍼티
 // 멤버함수 == 메소드
 class Employee {
-    constructor(empName, age, empJob) {
+    constructor(
+    // 암묵적으로 맴버변수로 사용된다고 한다.
+    _empName, _age, _empJob) {
+        this._empName = _empName;
+        this._age = _age;
+        this._empJob = _empJob;
         this.printEmp = () => {
             console.log(this._empName +
                 "의 나이는" +
@@ -11,9 +16,6 @@ class Employee {
                 this._empJob +
                 "입니다.");
         };
-        this._empName = empName;
-        this._age = age;
-        this._empJob = empJob;
     }
     // private에 접근하기 위한 인터페이스(함수)를 만들어 주는 것이 인지상정
     // get set
