@@ -1,8 +1,19 @@
-#root {
-  max-width: 1280px;
+
+
+.container {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
+}
+
+.test {
+  background: blueviolet;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  padding: 20 px;
 }
 
 .logo {
