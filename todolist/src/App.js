@@ -3,18 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("./App.css");
 function App() {
     let name = "리액트";
-    const style = {
-        backgroundColor: "black",
-        color: "white",
-        fontSize: "48px",
-        funtWeight: "bold",
-        padding: "20px",
-    };
-    return (<div style={style}>
+    return (<div className="container">
       <h1 className="test">
         Hello {name === "리액트" ? <h1>YES</h1> : null}!!
       </h1>
       <p>반갑습니다.</p>
+      <br />
+      {/* 주석도 사용할 수 있다고 하네요... */}
+      {
+        // 주석도 사용할 수 있다고 하네요...
+        }
     </div>);
 }
 // function App() {
