@@ -8,9 +8,6 @@ function App() {
   return (
     <div className="container">
       <TodoList></TodoList>
-      <ClassCom></ClassCom>
-      <FuncCom></FuncCom>
-      <MapTest></MapTest>
     </div>
   );
 }

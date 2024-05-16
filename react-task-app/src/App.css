@@ -1,28 +1,8 @@
-.board {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  color: black;
-  text-align: left;
-  font-size: 20px;
-}
-
-.container {
-  max-width: 800px;
+#root {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #282c34;
-  color: white;
+  padding: 2rem;
   text-align: center;
-}
-
-.test {
-  background: blueviolet;
-  color: white;
-  font-size: 48px;
-  font-weight: bold;
-  padding: 20 px;
 }
 
 .logo {
