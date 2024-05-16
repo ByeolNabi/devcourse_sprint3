@@ -1,14 +1,16 @@
 import "./App.css";
 import ClassCom from "./ClassCom";
 import FuncCom from "./FuncCom";
+import TodoList from "./Todolist";
+import MapTest from "./MapTest";
 
 function App() {
-  let name = "리액트";
-
   return (
     <div className="container">
+      <TodoList></TodoList>
       <ClassCom></ClassCom>
       <FuncCom></FuncCom>
+      <MapTest></MapTest>
     </div>
   );
 }
