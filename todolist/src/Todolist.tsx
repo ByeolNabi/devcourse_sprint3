@@ -69,6 +69,7 @@ const TodoList: React.FC = () => {
                     <span>{todo.text}</span>
                   )}
                 </span>
+                <button class="delbutton">삭제</button>
               </li>
             ))}
           </ul>
