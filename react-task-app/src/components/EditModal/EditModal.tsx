@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const EditModal = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div>EditModal</div>;
+};
 
-export default EditModal
+export default EditModal;
