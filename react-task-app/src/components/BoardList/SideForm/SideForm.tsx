@@ -1,7 +1,9 @@
 import React from "react";
 
 const SideForm = () => {
-  return <div></div>;
+  return <div>
+    SideForm
+  </div>;
 };
 
 export default SideForm;
