@@ -3,10 +3,10 @@ import { IBoard } from "../../types";
 
 type TBoardState = {
   modalActive: boolean;
-  boardArray: IBoard;
+  boardArray: IBoard[];
 };
 
-const initialState = {
+const initialState: TBoardState = {
   modalActive: false,
   boardArray: [
     {
@@ -21,19 +21,18 @@ const initialState = {
               taskId: "task-0",
               taskName: "Task 1",
               taskDescription: "Description",
-              taskOwnder: "John",
+              taskOwner: "John",
             },
             {
               taskId: "task-1",
               taskName: "Task 2",
               taskDescription: "Description",
-              taskOwnder: "John",
+              taskOwner: "John",
             },
           ],
         },
       ],
     },
-    {},
   ],
 };
 
