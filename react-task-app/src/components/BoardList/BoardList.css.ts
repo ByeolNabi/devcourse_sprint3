@@ -45,7 +45,7 @@ export const boardItem = style({
 export const boardItemActive = style({
   color: vars.color.brightText,
   fontSize: vars.fontSizing.T3,
-  backgroundColor: vars.spacing.medium,
+  backgroundColor: vars.color.selectedTab,
   padding: vars.spacing.medium,
   borderRadius: 10,
   cursor: "pointer",
