@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react'
 
-const s = () => {
-  return <div></div>;
-};
+const EditModal = () => {
+  return (
+    <div>
+      
+    </div>
+  )
+}
 
-export default s;
+export default EditModal
