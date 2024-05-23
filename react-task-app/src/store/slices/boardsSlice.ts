@@ -32,6 +32,10 @@ type TDeleteTaskAction = {
   taskId: string;
 };
 
+type TDeleteBoardAction = {
+  boardId: string;
+};
+
 const initialState: TBoardState = {
   modalActive: false,
   boardArray: [
@@ -68,6 +72,12 @@ const boardsSlice = createSlice({
   reducers: {
     addBoard: (state, { payload }: PayloadAction<TAddBoardAction>) => {
       state.boardArray.push(payload.board);
+    },
+
+    deleteBoard: (state, { payload }: PayloadAction<TDeleteBoardAction>) => {
+      state.boardArray = state.boardArray.filter(
+        (board) => board.boardId !== payload.boardId
+      );
     },
 
     addList: (state, { payload }: PayloadAction<TAddListAction>) => {
@@ -158,6 +168,7 @@ const boardsSlice = createSlice({
 
 export const {
   addBoard,
+  deleteBoard,
   updateTask,
   deleteTask,
   deleteList,
