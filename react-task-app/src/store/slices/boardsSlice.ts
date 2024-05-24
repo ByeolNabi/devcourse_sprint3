@@ -193,9 +193,9 @@ const boardsSlice = createSlice({
 
           const card = listStart?.tasks.splice(payload.droppableIndexStart, 1);
           const listEnd = state.boardArray[payload.boardIndex].lists.find(
-            list => list.listId === payload.droppableIdEnd
-          )
-          listEnd?.tasks.splice(payload.droppableIndexEnd, 0, ...card);
+            (list) => list.listId === payload.droppableIdEnd
+          );
+          listEnd?.tasks.splice(payload.droppableIndexEnd, 0, ...card!);
         }
       }
     },

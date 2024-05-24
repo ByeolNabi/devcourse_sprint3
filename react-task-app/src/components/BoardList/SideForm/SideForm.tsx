@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useRef, useState } from "react";
 import { FiCheck } from "react-icons/fi";
-import { icon, input, sideForm } from "./SideForm.css";
+import { icon, sideForm } from "./SideForm.css";
 import { useTypedDispatch } from "../../../hooks/redux";
 import { addBoard } from "../../../store/slices/boardsSlice";
 import { v4 as uuidv4 } from "uuid";
