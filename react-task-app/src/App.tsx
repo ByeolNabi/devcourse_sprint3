@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import {
@@ -15,7 +15,8 @@ import EditModal from "./components/EditModal/EditModal";
 import LoggerModal from "./components/LoggerModal/LoggerModal";
 import { v4 } from "uuid";
 import { addLog } from "./store/slices/loggerSlice";
-import { deleteBoard } from "./store/slices/boardsSlice";
+import { deleteBoard, sort } from "./store/slices/boardsSlice";
+import { DragDropContext } from "react-beautiful-dnd";
 
 function App() {
   const dispatch = useTypedDispatch();
@@ -54,10 +55,53 @@ function App() {
       };
 
       setActiveBoardId(boards[newIndexToSet()].boardId);
-      
     } else {
       alert("최소 게시판 개수는 한 개입니다.");
     }
+  };
+
+  const handleDragEnd = (result: any) => {
+    console.log(result);
+    const { destination, source, draggableId } = result;
+    console.log("lists", lists);
+
+    const sourceList = lists.filter(
+      (list) => list.listId === source.droppableId
+    )[0];
+
+    console.log("source list", sourceList);
+
+    dispatch(
+      sort({
+        boardIndex: boards.findIndex(
+          (board) => board.boardId === activeBoardId
+        ),
+        droppableIdStart: source.droppableId,
+        droppableIdEnd: destination.droppableId,
+        droppableIndexStart: source.index,
+        droppableIndexEnd: destination.index,
+        draggableId,
+      })
+    );
+
+    dispatch(
+      addLog({
+        logId: v4(),
+        logMessage: `
+        리스트 "${sourceList.listName}"에서
+        리스트 "${
+          lists.filter((list) => list.listId === destination.droppableId)[0]
+            .listName
+        }"으로
+        ${
+          sourceList.tasks.filter((task) => task.taskId === draggableId)[0]
+            .taskName
+        }을 옮김.
+        `,
+        logAuthor: "User",
+        logTimestamp: String(Date.now()),
+      })
+    );
   };
 
   return (
@@ -69,9 +113,13 @@ function App() {
         activeBoardId={activeBoardId}
         setActiveBoardId={setActiveBoardId}
       />
+
       <div className={board}>
-        <ListsContainer lists={lists} boardId={getActiveBoard.boardId} />
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <ListsContainer lists={lists} boardId={getActiveBoard.boardId} />
+        </DragDropContext>
       </div>
+
       <div className={buttons}>
         <button className={deleteBoardButton} onClick={handleDeleteBoard}>
           이 게시판 삭제하기

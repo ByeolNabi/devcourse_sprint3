@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from "react";
 import { useTypedSelector } from "../../hooks/redux";
 import SideForm from "./SideForm/SideForm";
-import { FiPlusCircle } from "react-icons/fi";
+import { FiLogIn, FiPlusCircle } from "react-icons/fi";
 import {
   addButton,
   addSection,
@@ -11,6 +11,10 @@ import {
   title,
 } from "./BoardList.css";
 import clsx from "clsx";
+import { GoSignOut } from "react-icons/go";
+import { getAuth, signInWithPopup } from "firebase/auth";
+import { app } from "../../firebase";
+import { GoogleAuthProvider } from "firebase/auth/cordova";
 
 type TBoardListProps = {
   activeBoardId: string;
@@ -24,6 +28,17 @@ const BoardList: FC<TBoardListProps> = ({
   const { boardArray } = useTypedSelector((state) => state.boards);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const handleLogin = () => {
+    signInWithPopup(auth, provider).then((userCredential) => {
+      console.log(userCredential);
+
+      
+    });
+  };
 
   const handleClick = () => {
     setIsFormOpen(!isFormOpen);
@@ -62,6 +77,9 @@ const BoardList: FC<TBoardListProps> = ({
         ) : (
           <FiPlusCircle className={addButton} onClick={handleClick} />
         )}
+
+        <GoSignOut className={addButton} />
+        <FiLogIn className={addButton} />
       </div>
     </div>
   );
