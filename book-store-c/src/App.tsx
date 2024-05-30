@@ -1,21 +1,22 @@
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
-import { GlobalStyle } from "./style/global";
-import { ThemeProvider } from "styled-components";
-import { ThemeName, dark, getTheme, light } from "./style/theme";
-import ThemeSwitcher from "./components/header/ThemeSwitcher";
-import { useContext, useState } from "react";
-import { BookStoreThemeProvider, ThemeContext } from "./context/themeContext";
+import { BookStoreThemeProvider } from "./context/themeContext";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Error from "./components/common/Error";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout><Home /></Layout>,
+    errorElement: <Error/>,
+  },
+  { path: "/books", element: <div>도서 목록</div> },
+]);
 
 function App() {
-  const { themeName, toggleTheme } = useContext(ThemeContext);
-
   return (
     <BookStoreThemeProvider>
-      <ThemeSwitcher />
-      <Layout>
-        <Home />
-      </Layout>
+        <RouterProvider router={router} />
     </BookStoreThemeProvider>
   );
 }
