@@ -5,14 +5,14 @@ function Header() {
     <HeaderStyle>
       <h1>book store</h1>
     </HeaderStyle>
-  );
+  );  
 }
 
 const HeaderStyle = styled.header`
-  background-color: #333;
+  background-color: ${({theme})=> theme.colors.background};
 
   h1 {
-    color: white;
+    color: ${({theme})=> theme.colors.primary};
   }
 `;
 
