@@ -3,15 +3,17 @@ import ThemeSwitcher from "../header/ThemeSwitcher";
 import logo from "../../assets/images/logo.png";
 import { FaSignInAlt, FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
-const CATEGORY = [
-  { id: null, name: "전체" },
-  { id: 0, name: "동화" },
-  { id: 1, name: "소설" },
-  { id: 2, name: "사회" },
-];
+import { Category } from "../../models/category.model";
+import { useEffect, useState } from "react";
+import { fetchCategory } from "../../api/category.api";
 
 function Header() {
+const [category, setCategory] = useState<Category[]>([]);
+
+useEffect( () => {
+  fetchCategory().then((category) => setCategory(category));
+} ,[])
+
   return (
     <HeaderStyle>
       <h1 className="logo">
@@ -19,7 +21,7 @@ function Header() {
       </h1>
       <nav className="catagory">
         <ul>
-          {CATEGORY.map((item) => (
+          {category.map((item) => (
             <li key={item.id}>
               <Link to={`/books?category_id=${item.id}`}>{item.name}</Link>
             </li>

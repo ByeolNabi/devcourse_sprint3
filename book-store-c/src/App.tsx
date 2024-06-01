@@ -3,20 +3,41 @@ import Home from "./pages/Home";
 import { BookStoreThemeProvider } from "./context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./components/common/Error";
+import { Sign } from "crypto";
+import Signup from "./pages/Signup";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout><Home /></Layout>,
-    errorElement: <Error/>,
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
+    errorElement: <Error />,
   },
-  { path: "/books", element: <div>도서 목록</div> },
+  {
+    path: "/books",
+    element: (
+      <Layout>
+        <div>도서 목록</div>
+      </Layout>
+    ),
+  },
+  {
+    path: "/signup",
+    element: (
+      <Layout>
+        <Signup />
+      </Layout>
+    ),
+  },
 ]);
 
 function App() {
   return (
     <BookStoreThemeProvider>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </BookStoreThemeProvider>
   );
 }
