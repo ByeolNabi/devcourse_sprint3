@@ -3,14 +3,16 @@ import { Book } from "../../models/book.model";
 import { getImgSrc } from "../../utils/image";
 import { formatNumber } from "../../utils/format";
 import { FaHeart } from "react-icons/fa";
+import { ViewMode } from "./BooksViewSwitcher";
 
 interface Props {
   book: Book;
+  view?: ViewMode;
 }
 
-function BookItem({ book }: Props) {
+function BookItem({ book, view }: Props) {
   return (
-    <BookItemStyle>
+    <BookItemStyle view={view}>
       <div className="img">
         <img src={getImgSrc(book.id)} alt="book" />
       </div>
@@ -28,62 +30,64 @@ function BookItem({ book }: Props) {
   );
 }
 
-const BookItemStyle = styled.div`
+const BookItemStyle = styled.div<Pick<Props, "view">>`
   display: flex;
-  flex-direction: column;
+  flex-direction: {({ view }) => (view === "grid" ? "column" : "row")};
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 
   .img {
     border-radius: ${({ theme }) => theme.borderRadius.default};
     overflow: hidden;
+    width: ${({ view }) => (view === "grid" ? "auto" : "160px")};
     img {
       max-width: 100%;
     }
   }
 
-  .content{
-    padding : 16px;
+  .content {
+    padding: 16px;
     position: relative;
+    flex: ${({ view }) => (view === "grid" ? 0 : 1)};
 
-    .title{
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin: 0 0 12px 0;
+    .title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 12px 0;
     }
-    .summary{
-        font-size: 0.875rem;
-        color: ${({ theme }) => theme.color.secondary};
-        margin: 0 0 rpx 0;
+    .summary {
+      font-size: 0.875rem;
+      color: ${({ theme }) => theme.color.secondary};
+      margin: 0 0 rpx 0;
     }
-    .author{
-        font-size: 0.875rem;
-        color: ${({ theme }) => theme.color.secondary};
-        margin: 0 0 4px 0;
+    .author {
+      font-size: 0.875rem;
+      color: ${({ theme }) => theme.color.secondary};
+      margin: 0 0 4px 0;
     }
-    .price{
-        font-size: 1rem;
-        color: ${({ theme }) => theme.color.secondary};
-        margin: 0 0 4px 0;
-        font-weight: 700;
+    .price {
+      font-size: 1rem;
+      color: ${({ theme }) => theme.color.secondary};
+      margin: 0 0 4px 0;
+      font-weight: 700;
     }
-    .likes{
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 0.875rem;
+    .likes {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.875rem;
+      color: ${({ theme }) => theme.color.primary};
+      margin: 0 0 4px 0;
+      font-weight: 700;
+      border: 1px solid ${({ theme }) => theme.color.border};
+      border-radius: ${({ theme }) => theme.borderRadius.default};
+      padding: 4px 12px;
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+
+      svg {
         color: ${({ theme }) => theme.color.primary};
-        margin: 0 0 4px 0;
-        font-weight: 700;
-        border: 1px solid ${({ theme }) => theme.color.border};
-        border-radius: ${({ theme }) => theme.borderRadius.default};
-        padding: 4px 12px;
-        position: absolute;
-        bottom: 16px;
-        right: 16px;
-
-        svg{
-            color: ${({ theme }) => theme.color.primary};
-        }
+      }
     }
   }
 `;

@@ -68,7 +68,7 @@ function Login() {
           </fieldset>
           <fieldset>
             <Button type="submit" size="medium" scheme="primary">
-              회원가입
+              로그인
             </Button>
           </fieldset>
           <div className="info">
